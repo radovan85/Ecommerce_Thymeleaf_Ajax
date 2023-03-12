@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<th:block th:fragment="ajaxLoadedContent">
+
+	<div class="container"
+		th:style="${'font-family: Oswald, sans-serif; color: #12044F;margin-top:120px;margin-bottom: 100px;'}">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h2 class="text-center" th:text="${'Registration Form'}"></h2>
+				<div class="card-body">
+					<form method="POST" id="registrationForm" name="registrationForm"
+						th:object="${tempForm}">
+				
+						<div class="form-group">
+							<label> First Name </label> 
+							<input type="text" 
+								id="firstName"
+								th:field="*{user.firstName}" 
+								class="form-control"
+								th:placeholder="${'Enter First Name'}" 
+							/> 
+							<span
+								class="text-danger" id="firstNameError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide first name!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> Last Name </label> 
+							<input type="text" 
+								id="lastName"
+								th:field="*{user.lastName}" 
+								class="form-control"
+								th:placeholder="${'Enter Last Name'}" 
+							/> 
+							<span
+								class="text-danger" id="lastNameError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide last name!'}"> 
+							</span>
+						</div>
+				
+						<div class="form-group">
+							<label> Email </label> 
+							<input type="text" 
+								id="email"
+								th:field="*{user.email}" 
+								class="form-control"
+								th:placeholder="${'Enter Email Address'}" 
+							/> 
+							<span
+								class="text-danger" id="emailError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide valid Email!'}"> 
+							</span>
+						</div>
+				
+				
+						<div class="form-group">
+							<label> Password </label> 
+							<input 
+								type="password" 
+								id="password"
+								th:field="*{user.password}" 
+								class="form-control"
+								th:placeholder="${'Enter Password'}" 
+							/> 
+							<span
+								class="text-danger" id="passwordError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide password!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> Password </label> 
+							<input 
+								type="password" 
+								id="confirmpass"
+								class="form-control"
+								th:placeholder="${'Confirm Password'}" 
+							/> 
+						</div>
+				
+
+						<div class="form-group text-center">
+							<h2>Billing Address</h2>
+						</div>
+						
+						<div class="form-group">
+							<label> Address </label> 
+							<input 
+								type="text" 
+								id="billAddress"
+								th:field="*{billingAddress.address}" 
+								class="form-control"
+								th:placeholder="${'Enter Address'}" 
+							/> 
+							<span
+								class="text-danger" id="billAddressError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Address!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> City </label> 
+							<input type="text" 
+								id="billCity"
+								th:field="*{billingAddress.city}" 
+								class="form-control"
+								th:placeholder="${'Enter City'}" 
+							/> 
+							<span
+								class="text-danger" id="billCityError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide City!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> State </label> 
+							<input type="text" 
+								id="billState"
+								th:field="*{billingAddress.state}" 
+								class="form-control"
+								th:placeholder="${'Enter State'}" 
+							/> 
+							<span
+								class="text-danger" id="billStateError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide State!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> Zipcode </label> 
+							<input type="text" 
+								id="billZipcode"
+								th:field="*{billingAddress.zipcode}" 
+								class="form-control"
+								th:placeholder="${'Enter Zip Code'}" 
+							/> 
+							<span
+								class="text-danger" id="billZipcodeError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Zip Code!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> Country </label> 
+							<input 
+								type="text" 
+								id="billCountry"
+								th:field="*{billingAddress.country}" 
+								class="form-control"
+								th:placeholder="${'Enter Country'}" 
+							/> 
+							<span
+								class="text-danger" id="billCountryError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Country!'}"> 
+							</span>
+						</div>
+			
+				
+
+						<div class="form-group text-center">
+							<h2>Shipping Address</h2>
+						</div>
+						
+						<div class="form-group">
+							<label> Address </label> 
+							<input 
+								type="text" 
+								id="shippAddress"
+								th:field="*{shippingAddress.address}" 
+								class="form-control"
+								th:placeholder="${'Enter Address'}" 
+							/> 
+							<span
+								class="text-danger" id="shippAddressError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Address!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> City </label> 
+							<input 
+								type="text" 
+								id="shippCity"
+								th:field="*{shippingAddress.city}" 
+								class="form-control"
+								th:placeholder="${'Enter City'}" 
+							/> 
+							<span
+								class="text-danger" id="shippCityError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide City!'}"> 
+							</span>
+						</div>
+
+						<div class="form-group">
+							<label> State </label> 
+							<input 
+								type="text" 
+								id="shippState"
+								th:field="*{shippingAddress.state}" 
+								class="form-control"
+								th:placeholder="${'Enter State'}" 
+							/> 
+							<span
+								class="text-danger" id="shippStateError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide State!'}"> 
+							</span>
+						</div>
+				
+						<div class="form-group">
+							<label> Zipcode </label> 
+							<input type="text" 
+								id="shippZipcode"
+								th:field="*{shippingAddress.zipcode}" 
+								class="form-control"
+								th:placeholder="${'Enter Zip Code'}" 
+							/> 
+							<span
+								class="text-danger" id="shippZipcodeError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Zip Code!'}"> 
+							</span>
+						</div>
+						
+						<div class="form-group">
+							<label> Country </label> 
+							<input 
+								type="text" 
+								id="shippCountry"
+								th:field="*{shippingAddress.country}" 
+								class="form-control"
+								th:placeholder="${'Enter Country'}" 
+							/> 
+							<span
+								class="text-danger" id="shippCountryError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please provide Country!'}"> 
+							</span>
+						</div>
+						
+						
+						<div class="form-group text-center">
+							<h2>Phone</h2>
+						</div>
+						
+						<div class="form-group">
+							<label> Phone </label> 
+							<input 
+								type="text" 
+								id="customerPhone"
+								th:field="*{customer.customerPhone}" 
+								class="form-control"
+								th:placeholder="${'Enter Phone Number'}" 
+								th:onkeypress="return validateNumber(event)"
+							/> 
+							<span
+								class="text-danger" id="customerPhoneError"
+								th:style="${'visibility: hidden;'}"
+								th:text="${'Please Provide Valid Number!'}"> 
+							</span>
+						</div>
+
+						<div class="box-footer text-center mt-5">
+							<button 
+								type="submit" 
+								class="btn btn-creator-blue-light" 
+								th:text="${'Register'}"
+								th:onclick="return ValidatePassword()" >
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		formInterceptor("registrationForm");
+	</script>
+</th:block>
